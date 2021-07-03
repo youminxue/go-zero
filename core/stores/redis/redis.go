@@ -43,6 +43,7 @@ type (
 		Addr string
 		Type string
 		Pass string
+		DB   int
 		tls  bool
 		brk  breaker.Breaker
 	}
@@ -1724,6 +1725,13 @@ func Cluster() Option {
 func WithPass(pass string) Option {
 	return func(r *Redis) {
 		r.Pass = pass
+	}
+}
+
+// WithDbNum customizes the given Redis with given dbnum.
+func WithDbNum(db int) Option {
+	return func(r *Redis) {
+		r.DB = db
 	}
 }
 
